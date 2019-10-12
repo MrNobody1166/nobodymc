@@ -1,6 +1,5 @@
-### Contributors List
-
-# If you're a contributor, put your name here following this template:
+# Contributors List
+### If you're a contributor, put your name here following this template:
 
 [Name] - [GitHub Username]
 [Bio]
