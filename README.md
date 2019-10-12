@@ -1,4 +1,4 @@
-# nobodymc
+# NobodyMC
 The Official NobodyMC Website Git Repository
 
 Hello!
