@@ -1,0 +1,31 @@
+<% include ../partials/header.ejs %>
+
+<header class="jumbotron">
+    <div class="container">
+        <h1>The NobodyMC Forum</h1>
+        <p>Welcome to the forum! Here you can create a thread or reply to one, and you can provide constructive criticism, suggest ideas for videos, or anything else you would like tp ask us. 
+            We will be trying to monitor the forum threads as often as possible, but we might not be able to reply to your threads until later. 
+            Anything that is posted that is hateful, slanderous, or deconstructive will be deleted by our administrators.
+        </p>
+        <p>
+            <a href="/forum/new" class="btn btn-primary btn-lg">Create New Thread</a>
+        </p>
+    </div>
+</header>
+
+<div class="row text-center" id="posts">
+    <% posts.forEach(function(post){ %>
+        <div class="col-md-3 col-sm-6">
+            <div class="thumbnail">
+                <div class="caption">
+                    <h4><%= post.title %></h4>
+                </div>
+                <p>
+                    <a href="/forum/<%= post._id %>" class="btn btn-primary">More Info</a> 
+                </p>
+            </div>
+        </div>
+    <% }); %>
+</div>
+
+<% include ../partials/footer.ejs %>

@@ -1,0 +1,26 @@
+#blogs {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#members {
+    margin-top: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 50px;
+}
+
+.inline {
+    display: inline;
+}
+
+.center {
+    margin: 0 auto;
+}
+
+@media (max-width: 1000px) {
+    .iframe {
+        height: 250px;
+        width: 400px;
+    }
+}

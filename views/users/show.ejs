@@ -1,0 +1,43 @@
+<% include ../partials/header %>
+
+<div class="jumbotron">
+    <% if(user.avatar) { %>
+        <img class="avatar img-rounded" src="<%= user.avatar %>">
+    <% } else { %>
+        <img class="avatar img-rounded" src="https://via.placeholder.com/50">
+    <% } %>
+    <div class="inline">
+        <% if(user.firstName && user.lastName) { %>
+            <h1 class="user-title inline"><%= `${user.username} (${user.firstName} ${user.lastName})` %></h1>
+        <% } else { %>
+            <h1 class="user-title inline"><%= `${user.username}` %></h1>
+        <% } %>
+        <% if(user.isAdmin) { %>
+            <p class="text-success">(Admin)</p>
+        <% } %>
+    </div>
+
+    <div class="row">
+        <h3><%= user.username %>'s Forum Threads:</h3>
+        <% if(posts = null) { %>
+            <h1>This user has no posts</h1>
+        <% } else { %>
+            <% posts.forEach(function(post) { %>
+                <div class="col-md-4 inline-style">
+                    <div class="thumbnail">
+                        <img src="<%= post.image %>">
+                        <div class="caption">
+                            <h3><%= post.name %></h3>
+                            <p><%= post.description %></p>
+                            <a href="/forum/<%= post.id %>" class="btn btn-primary">Go to Thread</a>
+                        </div>
+                    </div>
+                </div>
+            <% }); %>
+        <% } %>
+        
+    </div>
+    
+</div>
+
+<% include ../partials/footer %>

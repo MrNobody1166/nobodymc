@@ -1,0 +1,33 @@
+<% include ../partials/header.ejs %>
+
+<% if(msg != null || prev  != null) { %>
+    <h1>Sorry, but an error occurred. The error is as follows:</h1>
+    <h3><%= msg %></h3>
+    <p>
+        <a href="<%= prev %>" class="btn btn-success btn-sm">Go back</a>
+    </p>
+<% } else { %>
+    <h1>No error has occurred. Please go back to the home page.</h1>
+    <p>
+        <a href="/home" class="btn btn-success btn-sm">Home page</a>
+    </p>
+<% } %>
+<!-- <% if(msg = null) { %>
+    <h1>No error has occurred. Please go back to the home page.</h1>
+    <p>
+        <a href="/home" class="btn btn-success btn-sm">Home page</a>
+    </p>
+<% } else if(prev = "") { %>
+    <h1>This page is not for you, since you <em>obviously</em> don't have an error. Please go to the home page.</h1>
+    <p>
+        <a href="/home" class="btn btn-success btn-sm">Home page</a>
+    </p>
+<% } else { %>
+    <h1>Sorry, but an error occurred. The error is as follows:</h1>
+    <h3><%= msg %></h3>
+    <p>
+        <a href="<%= prev %>" class="btn btn-success btn-sm">Go back</a>
+    </p>
+<% } %> -->
+
+<% include ../partials/footer.ejs %>

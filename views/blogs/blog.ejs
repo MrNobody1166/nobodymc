@@ -1,0 +1,33 @@
+<% include ../partials/header.ejs %>
+
+<header class="jumbotron">
+    <div class="container">
+        <h1>NobodyMC's Official Blog</h1>
+        <p>Here we post often (yeah right) about new videos and updates. Here you can find 
+            the freshest gossip, the latest viral trend (not us), and anything else you want 
+            to know. (If you have questions, post them in the forum).</p>
+        <% if(currentUser && currentUser.isAdmin) { %>
+            <p>
+                <a href="/blog/new" class="btn btn-primary btn-lg">Add New Blog</a>
+            </p>
+        <% } %>
+    </div>
+</header>
+
+<div class="row text-center" id="blogs">
+    <% blogs.forEach(function(blog){ %>
+        <div class="col-md-3 col-sm-6">
+            <div class="thumbnail">
+                <img src="<%= blog.image %>">
+                <div class="caption">
+                    <h4><%= blog.title %></h4>
+                </div>
+                <p>
+                    <a href="/blog/<%= blog._id %>" class="btn btn-primary">More Info</a> 
+                </p>
+            </div>
+        </div>
+    <% }); %>
+</div>
+
+<% include ../partials/footer.ejs %>
