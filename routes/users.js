@@ -52,7 +52,7 @@ router.get("/logout", (req, res) => {
 });
 
 router.get("/:id", async function(req, res) {
-    User.findById(req.params.id, function(err, user) {
+    User.findById(req.params.id, (err, user) => {
         if(err) {
             console.log(err);
             req.flash("error", `Something went wrong! ${err.message}`);
@@ -64,10 +64,33 @@ router.get("/:id", async function(req, res) {
                     req.flash("error", "Something Went Wrong! Please Try Again")
                     res.redirect("/home");
                 } else {
-                    res.render("users/show", {user: user, posts: posts});
+                    if(posts) {
+                        res.render("users/show", {user: user, posts: posts});
+                    } else {
+                        res.render("users/show", {user: user, posts: null});
+                    }
                 }
             });
-            res.render("users/show", {user: user});
+        }
+    });
+});
+
+router.post("/:id/banner", (req, res) => {
+    User.findByIdAndUpdate(req.params.id, req.body.banner, (err, user) => {
+        if(err) {
+            console.log(`${err.message}\n${err}`);
+            req.flash(`error", "Something went wrong! ${err.message}`);
+            res.redirect("/:id");
+        } else {
+            req.flash("success", "Successfully Edited Blog!");
+            res.redirect("/user/" + req.params.id);
+            // if(user._id == currentUser._id) {
+            //     user.banner = req.body.banner;
+            //     user.save;
+            // } else {
+            //     req.flash("error", "You're not allowed to do that");
+            //     res.redirect("/:id");
+            // }
         }
     });
 });

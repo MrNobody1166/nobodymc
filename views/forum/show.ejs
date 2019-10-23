@@ -85,7 +85,7 @@
                         </strong>
                         <span class="pull-right"><%= moment(comment.createdAt).fromNow() %></span>
                         <p><%= comment.text %></p>
-                        <% if (currentUser && currentUser._id.equals(comment.author.id) || currentUser.isAdmin) { %>
+                        <% if (currentUser && currentUser._id.equals(comment.author.id) || currentUser && currentUser.isAdmin) { %>
                             <a class="btn btn-xs btn-warning" role="button" data-toggle="collapse" href="#collapseEdit<%= comment._id %>" aria-expanded="false" aria-controls="collapse<%= comment._id %>">
                                 Edit
                             </a>
