@@ -11,6 +11,20 @@ middlewareObj.isLoggedIn = function(req, res, next) {
     res.redirect("/user/login");
 };
 
+middlewareObj.isUserEqual = function(req, res, next) {
+    if(req.isAuthenticated()) {
+        if (req.user._id == req.params.id) {
+            return next();
+        } else {
+            req.flash("error", "You Aren't Allowed To Do That!");
+            res.redirect("/home");
+        }
+    } else {
+        req.flash("error", "You Aren't Allowed To Do That!");
+        res.redirect("/home");
+    }
+};
+
 middlewareObj.isAdmin = (req, res, next) => {
     if (req.isAuthenticated()) {
         if (req.user.isAdmin) {

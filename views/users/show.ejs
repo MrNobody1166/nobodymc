@@ -1,15 +1,36 @@
 <% include ../partials/header %>
 
-<% if(user.banner) { %>
-    <div class="center-block">
-        <img class="img-center" id="" src="<%= user.banner %>">
+<div class="thumbnail center-block" style="width: 80vw">
+    <% if(user.banner) { %>
+        <img class="text-center" src="<%= user.banner %>">
+        
         <% if(currentUser && currentUser.id == user._id) { %>
             <a href="#collapseBannerForm" class="btnbanner btn btn-default" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="collapseBannerForm">
                 <i class="fas fa-edit"></i>
             </a>
         <% } %>
-    </div>
-<% } %>
+    <% } %>
+
+    <% if(currentUser && currentUser.id == user._id && !user.banner) { %>
+        <h3 class="text-center">You have no banner image</h3>
+        <a href="#collapseBannerForm" style="width: 30vw" class="center-block btn btn-default btn-lg" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="collapseBannerForm">
+            Add Banner <i class="fas fa-edit"></i>
+        </a>
+    <% } %>
+</div>
+
+<!-- <div class="thumbnail center-block">
+    <% if(user.banner) { %>
+        <img class="text-center" src="<%= user.banner %>">
+        
+        <% if(currentUser && currentUser.id == user._id) { %>
+            <a href="#collapseBannerForm" class="btnbanner btn btn-default" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="collapseBannerForm">
+                <i class="fas fa-edit"></i>
+            </a>
+        <% } %>
+    <% } %>
+</div>
+
 
 <% if(currentUser && currentUser.id == user._id && !user.banner) { %>
     <div class="thumbnail center-block" style="width: 80vw">
@@ -18,26 +39,26 @@
             Add Banner <i class="fas fa-edit"></i>
         </a>
     </div>
-    <div class="collapse" id="collapseBannerForm">
-        <div class="well">
-            <% if(!currentUser) { %>
-                <h5>You can't do that!</h5>
-            <% } %>
-            <% if(currentUser && currentUser.id == user._id) { %>
-                <h4>Add Banner URL</h4>
-                <form id="add-comment-form" action="/user/<%= user._id %>/banner" method="POST">
-                    <div class="form-group">
-                        <input type="text" class="form-control" name="banner"></input>
-                    </div>
-                    <div class="form-group">
-                        <button class="btn btn-success">Change Banner</button>
-                    </div>
-                </form>
-            <% } %>
-        </div>
-    </div>
-<% } %>
+<% } %> -->
 
+<div class="collapse" id="collapseBannerForm">
+    <div class="well">
+        <% if(!currentUser) { %>
+            <h5>You can't do that!</h5>
+        <% } %>
+        <% if(currentUser && currentUser.id == user._id) { %>
+            <h4>Add Banner URL</h4>
+            <form id="add-comment-form" action="/user/<%= user._id %>/banner" method="POST">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="banner" required></input>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-success">Change Banner</button>
+                </div>
+            </form>
+        <% } %>
+    </div>
+</div>
 <!-- <div class="jumbotron">
     <% if(user.avatar) { %>
         <img class="avatar img-rounded" src="<%= user.avatar %>">

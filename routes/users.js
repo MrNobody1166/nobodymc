@@ -75,16 +75,15 @@ router.get("/:id", async function(req, res) {
     });
 });
 
-router.post("/:id/banner", (req, res) => {
+router.post("/:id/banner", middleware.isUserEqual, (req, res) => {
     User.findByIdAndUpdate(req.params.id, req.body.banner, (err, user) => {
         if(err) {
-            console.log(`${err.message}\n${err}`);
+            console.log(`${req.body.banner}\n\n${err.message}\n\n${err}`);
             req.flash(`error", "Something went wrong! ${err.message}`);
             res.redirect("/:id");
         } else {
-            req.flash("success", "Successfully Edited Blog!");
+            req.flash("success", "Successfully Edited Banner!");
             res.redirect("/user/" + req.params.id);
-            // if(user._id == currentUser._id) {
             //     user.banner = req.body.banner;
             //     user.save;
             // } else {
