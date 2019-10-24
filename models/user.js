@@ -19,7 +19,10 @@ var UserSchema = new mongoose.Schema({
         type: String,
         default: 'https://via.placeholder.com/150'
     },
-    banner: String,
+    banner: {
+        type: String,
+        default: null
+    },
     firstName: {
         type: String
     },

@@ -75,8 +75,8 @@ router.get("/:id", async function(req, res) {
     });
 });
 
-router.post("/:id/banner", middleware.isUserEqual, (req, res) => {
-    User.findByIdAndUpdate(req.params.id, req.body.banner, (err, user) => {
+router.post("/:id/banner", (req, res) => {
+    User.findByIdAndUpdate(req.params.id, req.body.user, (err, user) => {
         if(err) {
             console.log(`${req.body.banner}\n\n${err.message}\n\n${err}`);
             req.flash(`error", "Something went wrong! ${err.message}`);
