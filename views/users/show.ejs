@@ -1,47 +1,23 @@
 <% include ../partials/header %>
 
-<div class="thumbnail center-block" style="width: 80vw">
+<div class="bannerdiv thumbnail center-block" style="width: 60vw;">
     <% if(user.banner != null) { %>
-        <img class="text-center" src="<%= user.banner %>">
-        
-        <% if(currentUser && currentUser.id == user._id) { %>
-            <a href="#collapseBannerEditForm" class="btnbanner btn btn-default" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="collapseBannerEditForm">
-                <i class="fas fa-edit"></i>
-            </a>
-        <% } %>
+        <img class="text-center banner" src="<%= user.banner %>">
     <% } else { %>
         <% if(currentUser && currentUser.id == user._id) { %>
             <h3 class="text-center">You have no banner image</h3>
             <a href="#collapseBannerForm" style="width: 30vw" class="center-block btn btn-default btn-lg" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="collapseBannerForm">
                 Add Banner <i class="fas fa-edit"></i>
             </a>
-        <% } else { %>
-            <h2 class="text-center"><%= user.username %> has no banner</h3>
         <% } %>
     <% } %>
 </div>
 
-<!-- <div class="thumbnail center-block">
-    <% if(user.banner) { %>
-        <img class="text-center" src="<%= user.banner %>">
-        
-        <% if(currentUser && currentUser.id == user._id) { %>
-            <a href="#collapseBannerForm" class="btnbanner btn btn-default" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="collapseBannerForm">
-                <i class="fas fa-edit"></i>
-            </a>
-        <% } %>
-    <% } %>
-</div>
-
-
-<% if(currentUser && currentUser.id == user._id && !user.banner) { %>
-    <div class="thumbnail center-block" style="width: 80vw">
-        <h3 class="text-center">You have no banner image</h3>
-        <a href="#collapseBannerForm" style="width: 30vw" class="center-block btn btn-default btn-lg" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="collapseBannerForm">
-            Add Banner <i class="fas fa-edit"></i>
-        </a>
-    </div>
-<% } %> -->
+<% if(currentUser && currentUser.id == user._id) { %>
+    <a href="#collapseBannerEditForm" class="center-block btnbanner btn btn-default btn-lg" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="collapseBannerEditForm">
+        Change Banner <i class="fas fa-edit"></i>
+    </a>
+<% } %>
 
 <div class="collapse" id="collapseBannerForm">
     <div class="well">
@@ -74,27 +50,28 @@
                     <input type="text" form="change-banner-form<%= user._id %>" class="form-control" name="user[banner]" value="<%= user.banner %>" required>
                 </div>
                 <div class="form-group">
-                    <button class="btn btn-success">Change Banner</button>
+                    <button class="btn btn-warning">Change Banner</button>
+                </div>
+            </form>
+            <form id="delete-banner-form<%= user._id %>" action="/user/<%= user._id %>/banner?_method=DELETE" method="POST">
+                <div class="form-group">
+                    <button class="btn btn-danger">Delete Banner!</button>
                 </div>
             </form>
         <% } %>
     </div>
 </div>
 
-<!-- <div class="jumbotron">
+<div class="jumbotron">
     <% if(user.avatar) { %>
         <img class="avatar img-rounded" src="<%= user.avatar %>">
     <% } else { %>
         <img class="avatar img-rounded" src="https://via.placeholder.com/50">
     <% } %>
     <div class="inline">
-        <% if(user.firstName && user.lastName) { %>
-            <h1 class="user-title inline"><%= `${user.username} (${user.firstName} ${user.lastName})` %></h1>
-        <% } else { %>
-            <h1 class="user-title inline"><%= `${user.username}` %></h1>
-        <% } %>
+        <h2 class="user-title inline"><%= `${user.username}` %></h1>
         <% if(user.isAdmin) { %>
-            <p class="text-success">(Admin)</p>
+            <p class="text-success inline">(Admin)</p>
         <% } %>
     </div>
     
@@ -118,6 +95,6 @@
         <h3>This user has no posts</h1>
     <% } %>
     
-</div> -->
+</div>
 
 <% include ../partials/footer %>

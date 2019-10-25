@@ -94,4 +94,20 @@ router.post("/:id/banner", (req, res) => {
     });
 });
 
+router.delete("/:id/banner", (req, res) => {
+    User.findById(req.params.id, (err, user) => {
+        if(err) {
+            console.log(`${err.message}\n\n${err}`);
+            req.flash(`error", "Something went wrong! ${err.message}`);
+            res.redirect("user/" + req.params.id);
+        } else {
+            user.banner = null;
+            user.save();
+            console.log(user.banner);
+            req.flash("success", "Successfully Deleted Banner!");
+            res.redirect("/user/" + req.params.id);
+        }
+    });
+});
+
 module.exports = router;

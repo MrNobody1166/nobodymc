@@ -15,13 +15,28 @@
 }
 
 .btnbanner {
-    position: absolute;
-    right: 15vw;
-    top: 29vw;
+    width: 30vw;
+    margin-bottom: 2vh;
 }
 
 .center {
     margin: 0 auto;
+}
+
+.avatar {
+    max-width: 50px;
+    max-height: 50px;
+}
+
+.banner {
+    min-width: 25%;
+    min-height: 10vh;
+    max-width: 60vw;
+    max-height: 40vh;
+}
+
+.banner-div {
+    margin-bottom: 0;
 }
 
 @media (max-width: 1000px) {
