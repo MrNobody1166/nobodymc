@@ -10,7 +10,6 @@ var express         = require("express"),
 
 var userRoutes      = require("./routes/users"),
     blogRoutes      = require("./routes/blogs"),
-    forumRoutes     = require("./routes/posts"),
     commentRoutes   = require("./routes/comments"),
     indexRoutes     = require("./routes/index");
 
@@ -43,8 +42,7 @@ app.use(async function(req, res, next) {
 
 app.use("/blog/:id/comments", commentRoutes);
 app.use("/user", userRoutes);
-app.use("/blog", blogRoutes)
-app.use("/forum", forumRoutes)
+app.use("/blog", blogRoutes);
 app.use("/", indexRoutes);
 
 app.listen(3000, () => {

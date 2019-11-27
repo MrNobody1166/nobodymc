@@ -1,19 +1,23 @@
 <% include ../partials/header %>
 
-<div class="bannerdiv thumbnail center-block" style="width: 60vw;">
-    <% if(user.banner != null) { %>
+
+
+<% if(user.banner != null) { %>
+    <div class="thumbnail banner-div center-block">
         <img class="text-center banner" src="<%= user.banner %>">
-    <% } else { %>
-        <% if(currentUser && currentUser.id == user._id) { %>
+    </div>
+<% } else { %>
+    <% if(currentUser && currentUser.id == user._id) { %>
+        <div class="bannerdiv thumbnail center-block" style="width: 60vw;">
             <h3 class="text-center">You have no banner image</h3>
             <a href="#collapseBannerForm" style="width: 30vw" class="center-block btn btn-default btn-lg" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="collapseBannerForm">
                 Add Banner <i class="fas fa-edit"></i>
             </a>
-        <% } %>
+        </div>
     <% } %>
-</div>
+<% } %>
 
-<% if(currentUser && currentUser.id == user._id) { %>
+<% if(user.banner != null && currentUser && currentUser.id == user._id) { %>
     <a href="#collapseBannerEditForm" class="center-block btnbanner btn btn-default btn-lg" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="collapseBannerEditForm">
         Change Banner <i class="fas fa-edit"></i>
     </a>
@@ -64,7 +68,7 @@
 
 <div class="jumbotron">
     <% if(user.avatar) { %>
-        <img class="avatar img-rounded" src="<%= user.avatar %>">
+        <img class="avatar img-circle" src="<%= user.avatar %>">
     <% } else { %>
         <img class="avatar img-rounded" src="https://via.placeholder.com/50">
     <% } %>
@@ -74,11 +78,34 @@
             <p class="text-success inline">(Admin)</p>
         <% } %>
     </div>
-    
+    <% if (user.bio != "") { %>
+        <div class="thumbnail user-bio">
+            <% if (currentUser && currentUser .id == user._id) { %>
+                <form id="change-bio-form<%= user._id %>" action="/user/<%= user._id %>/bio" method="POST">
+                    <div class="form-group">
+                        <textarea name="user[bio]" id="bio" cols="10" rows="10" class="form-control"><%= user.bio %></textarea>
+                    </div>
+                </form>
+            <% } else { %>
+                <p><%= user.bio %></p>
+            <% } %>
+        </div>
+    <% } else { %>
+        <% if (currentUser && currentUser._id == user._id) { %>
+            <h3>You have no bio</h3>
+            <form id="add-bio-form" action="/user/<%= user._id %>/bio" method="POST">
+                <div class="form-group">
+                    <textarea name="user[bio]" id="bio" cols="10" rows="10" class="form-control"></textarea>
+                </div>
+            </form>
+        <% } else { %>
+
+        <% } %>
+    <% } %>
 </div>
 
 <div class="row">
-    <h2><%= user.username %>'s Forum Threads:</h2>
+    <h3>Forum Threads</h3>
     <% if(posts) { %>
         <% posts.forEach(function(post) { %>
             <div class="col-md-4 inline-style">

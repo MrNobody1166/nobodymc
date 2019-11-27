@@ -23,6 +23,10 @@ var UserSchema = new mongoose.Schema({
         type: String,
         default: null
     },
+    bio: {
+        type: String,
+        default: ""
+    },
     firstName: {
         type: String
     },

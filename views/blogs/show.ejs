@@ -17,10 +17,7 @@
                 <p><%= blog.description %></p>
                 <p>
                     <em>
-                        Submitted By 
-                        <a href="/user/<%= blog.author.id %>">
-                            <%= blog.author.username %>
-                        </a>, <%= moment(blog.createdAt).fromNow() %>
+                        Submitted By <%= blog.author.username %>, <%= moment(blog.createdAt).fromNow() %>
                     </em>
                 </p>
 

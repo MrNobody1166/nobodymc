@@ -2,7 +2,6 @@ var express         = require("express"),
     router          = express.Router(),
     User            = require("../models/user"),
     Blog            = require("../models/blog"),
-    Post            = require("../models/post"),
     middleware      = require("../middleware"),
     passport        = require("passport");
 
@@ -49,65 +48,6 @@ router.get("/logout", (req, res) => {
     req.logout();
     req.flash("success", "You were logged out successfully!");
     res.redirect("/home");
-});
-
-router.get("/:id", async function(req, res) {
-    User.findById(req.params.id, (err, user) => {
-        if(err) {
-            console.log(err);
-            req.flash("error", `Something went wrong! ${err.message}`);
-            res.redirect("/home");
-        } else {
-            Post.find().where("author.id").equals(user.id).exec(function(err, posts) {
-                if(err){
-                    console.log(err);
-                    req.flash("error", "Something Went Wrong! Please Try Again")
-                    res.redirect("/home");
-                } else {
-                    if(posts) {
-                        res.render("users/show", {user: user, posts: posts});
-                    } else {
-                        res.render("users/show", {user: user, posts: null});
-                    }
-                }
-            });
-        }
-    });
-});
-
-router.post("/:id/banner", (req, res) => {
-    User.findByIdAndUpdate(req.params.id, req.body.user, (err, user) => {
-        if(err) {
-            console.log(`${req.body.banner}\n\n${err.message}\n\n${err}`);
-            req.flash(`error", "Something went wrong! ${err.message}`);
-            res.redirect("/:id");
-        } else {
-            req.flash("success", "Successfully Edited Banner!");
-            res.redirect("/user/" + req.params.id);
-            //     user.banner = req.body.banner;
-            //     user.save;
-            // } else {
-            //     req.flash("error", "You're not allowed to do that");
-            //     res.redirect("/:id");
-            // }
-        }
-    });
-});
-
-router.delete("/:id/banner", (req, res) => {
-    User.findById(req.params.id, (err, user) => {
-        if(err) {
-            console.log(`${err.message}\n\n${err}`);
-            req.flash(`error", "Something went wrong! ${err.message}`);
-            res.redirect("user/" + req.params.id);
-        } else {
-            user.banner = null;
-            user.save();
-            console.log(user.banner);
-            req.flash("success", "Successfully Deleted Banner!");
-            res.redirect("/user/" + req.params.id);
-        }
-    });
 });
 
 module.exports = router;

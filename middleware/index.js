@@ -1,6 +1,5 @@
 var middlewareObj   = {},
     Blog            = require("../models/blog"),
-    Post            = require("../models/post"),
     Comment         = require("../models/comment");
 
 middlewareObj.isLoggedIn = function(req, res, next) {
@@ -52,31 +51,6 @@ middlewareObj.checkBlogOwnership = function(req, res, next) {
                     return res.redirect("back");
                 };
                 if(blog.author.id.equals(req.user._id) || req.user.isAdmin) { // You have to use .equals because one is an object and one is a string
-                    next();
-                } else {
-                    req.flash("error", "You Don't Have Permission To Do That!");
-                    res.redirect("back");
-                };
-            };
-        });
-    } else {
-        res.redirect("back");
-    };
-};
-
-middlewareObj.checkPostOwnership = function(req, res, next) {
-    if(req.isAuthenticated()) {
-        Post.findById(req.params.id, function(err, post) {
-            if(err) {
-                res.redirect("back");
-                req.flash("error", "Forum Post Not Found");
-                console.log(err + "\n ☻");
-            } else {
-                if(!post) {
-                    req.flash("error", "Forum Post Not Found.");
-                    return res.redirect("back");
-                };
-                if(post.author.id.equals(req.user._id) || req.user.isAdmin) { // You have to use .equals because one is an object and one is a string
                     next();
                 } else {
                     req.flash("error", "You Don't Have Permission To Do That!");
