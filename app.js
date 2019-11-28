@@ -6,14 +6,15 @@ var express         = require("express"),
     methodOverride  = require("method-override"),
     User            = require("./models/user"),
     passport        = require("passport"),
-    LocalStrategy   = require("passport-local");
+    LocalStrategy   = require("passport-local"),
+    db = process.env.DB;
 
 var userRoutes      = require("./routes/users"),
     blogRoutes      = require("./routes/blogs"),
     commentRoutes   = require("./routes/comments"),
     indexRoutes     = require("./routes/index");
 
-mongoose.connect("mongodb://nobody:batmanwithfries12@ds113855.mlab.com:13855/nobodymc", {useNewUrlParser: true});
+mongoose.connect(`${db}`, {useNewUrlParser: true});
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
