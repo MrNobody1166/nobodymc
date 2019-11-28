@@ -1,8 +1,7 @@
 var express         = require("express"),
+    // eslint-disable-next-line new-cap
     router          = express.Router(),
     User            = require("../models/user"),
-    Blog            = require("../models/blog"),
-    middleware      = require("../middleware"),
     passport        = require("passport");
 
 router.get("/register", (req, res) => {
@@ -13,25 +12,29 @@ router.post("/register", (req, res) => {
     var newUser = new User({
         username: req.body.username,
         password: req.body.password,
-        firstName: req.body.firstName, 
-        lastName: req.body.lastName, 
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
         email: req.body.email,
         avatar: req.body.avatar
     });
-    if(req.body.adminCode === "1166clan") {
+
+    // eslint-disable-next-line no-process-env
+    if (req.body.adminCode === process.env.ADMIN) {
         newUser.isAdmin = true;
     }
+    // eslint-disable-next-line consistent-return
     User.register(newUser, req.body.password, (err, user) => {
-        if(err) {
+        if (err) {
             console.log(err.message);
             req.flash("error", `Something went wrong! ${err.message}`);
+
             return res.redirect("/user/register");
-        } else {
-            passport.authenticate("local")(req, res, () => {
-                req.flash("success", "Welcome to the NobodyMC website" + user.username + "!");
-                res.redirect("/home");
-            });
         }
+        passport.authenticate("local")(req, res, () => {
+            req.flash("success", "Welcome to the NobodyMC website" + user.username + "!");
+            res.redirect("/home");
+        });
+
     });
 });
 

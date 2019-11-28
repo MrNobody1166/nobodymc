@@ -7,7 +7,8 @@ var express         = require("express"),
     User            = require("./models/user"),
     passport        = require("passport"),
     LocalStrategy   = require("passport-local"),
-    db = process.env.DB;
+    // eslint-disable-next-line no-process-env
+    db              = process.env.DB;
 
 var userRoutes      = require("./routes/users"),
     blogRoutes      = require("./routes/blogs"),
