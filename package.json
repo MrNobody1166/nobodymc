@@ -5,8 +5,8 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js",
-    "lint": "./node_modules/.bin/eslint app.js"
+    "lint": "./node_modules/.bin/eslint app.js",
+    "start": "node app.js"
   },
   "author": "Caleb Pickens",
   "license": "ISC",
