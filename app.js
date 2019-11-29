@@ -7,6 +7,8 @@ var express         = require("express"),
     User            = require("./models/user"),
     passport        = require("passport"),
     LocalStrategy   = require("passport-local"),
+    port            = 3000 || process.env.PORT,
+    ip              = process.env.IP,
     // eslint-disable-next-line no-process-env
     db              = process.env.DB;
 
@@ -47,6 +49,6 @@ app.use("/user", userRoutes);
 app.use("/blog", blogRoutes);
 app.use("/", indexRoutes);
 
-app.listen(3000, () => {
+app.listen(port, ip, () => {
     console.log("Server is running successfully.");
 });
