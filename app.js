@@ -47,6 +47,7 @@ app.use("/user", userRoutes);
 app.use("/blog", blogRoutes);
 app.use("/", indexRoutes);
 
+// eslint-disable-next-line no-process-env
 app.listen(process.env.PORT, process.env.IP, () => {
     console.log("Server is running successfully.");
 });
