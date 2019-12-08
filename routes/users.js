@@ -33,7 +33,6 @@ router.post("/register", (req, res) => {
             req.flash("success", "Welcome to the NobodyMC website" + user.username + "!");
             res.redirect("/home");
         });
-
     });
 });
 

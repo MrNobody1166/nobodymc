@@ -1,5 +1,5 @@
 var mongoose = require("mongoose"),
-    commentSchema = new mongoose.Schema({
+    replySchema = new mongoose.Schema({
         text: String,
         createdAt: {
             type: Date,
@@ -11,7 +11,15 @@ var mongoose = require("mongoose"),
                 ref: "User"
             },
             username: String
+        },
+        likes: {
+            type: Number,
+            default: 0
+        },
+        dislikes: {
+            type: Number,
+            default: 0
         }
     });
 
-module.exports = mongoose.model("Comment", commentSchema);
+module.exports = mongoose.model("Reply", replySchema);
