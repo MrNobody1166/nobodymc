@@ -5,39 +5,30 @@
     <div class="new-form">
         <form action="/user/register" method="POST">
             <div class="form-group">
-                <label for="username">Username*</label>
+                <label for="username">Username</label>
                 <input class="form-control" type="text" name="username" required>
             </div>
             <div class="form-group">
-                <label for="password">Password*</label>
+                <label for="password">Password</label>
                 <input class="form-control" type="password" name="password" required>
             </div>
             <div class="form-group">
-                <label for="email">Email*</label>
-                <input class="form-control" type="email" name="email" required>
-            </div>
-            <div class="form-group">
                 <label for="firstName">First Name</label>
-                <input class="form-control" type="text" name="firstName">
+                <input class="form-control" type="text" name="firstName" required>
             </div>
             <div class="form-group">
                 <label for="lastName">Last Name</label>
-                <input class="form-control" type="text" name="lastName">
+                <input class="form-control" type="text" name="lastName" required>
             </div>
             <div class="form-group">
-                <label for="avatar">Profile Image URL</label>
-                <input class="form-control" type="text" name="avatar">
-            </div>
-            <div class="form-group">
-                <label for="adminCode">Admin Code</label>
-                <input class="form-control" type="text" name="adminCode">
+                <label for="email">Email</label>
+                <input class="form-control" type="email" name="email" required>
             </div>
             <div class="form-group">
                 <button class="btn btn-lg btn-primary btn-block">Sign Up</button>
             </div>
         </form>
         <a href="/home">Go Back</a>
-        <h1 class="pull-right">* = required</h1>
     </div>
 </div>
 

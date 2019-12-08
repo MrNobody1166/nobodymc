@@ -10,6 +10,14 @@ var mongoose = require("mongoose"),
             type: String,
             required: true
         },
+        firstName: {
+            type: String,
+            required: true
+        },
+        lastName: {
+            type: String,
+            required: true
+        },
         email: {
             type: String,
             required: true
@@ -25,12 +33,6 @@ var mongoose = require("mongoose"),
         bio: {
             type: String,
             default: ""
-        },
-        firstName: {
-            type: String
-        },
-        lastName: {
-            type: String
         },
         isAdmin: {
             type: Boolean,

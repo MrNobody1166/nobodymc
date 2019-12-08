@@ -14,8 +14,7 @@ router.post("/register", (req, res) => {
         password: req.body.password,
         firstName: req.body.firstName,
         lastName: req.body.lastName,
-        email: req.body.email,
-        avatar: req.body.avatar
+        email: req.body.email
     });
 
     // eslint-disable-next-line no-process-env
